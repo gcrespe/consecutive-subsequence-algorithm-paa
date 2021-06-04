@@ -6,28 +6,28 @@
 //  743543
 //
 
-int subsequenciaSomaMaxima(int arr[], int size){
+#include <stdio.h>
+#include <stdlib.h>
 
-    int maximoLocal = 0, maximoGeral = 0;
+int subsequenciaSomaMaxima(int arr[], int tam){
 
-    for (int i = 0; i < size; i++) {
+    int i = 0, maximoLocal = 0, maximoTotal = 0;
 
-        // include current element to previous subarray only
-        // when it can add to a bigger number than itself.
+    for (i; i < tam; i++) {
+
         if (arr[i] <= maximoLocal + arr[i]) {
             maximoLocal += arr[i];
         }
        
-        // Else start the max subarry from current element
         else {
             maximoLocal = arr[i];
         }
-        if (maximoLocal > maximoGeral)
-            maximoGeral = maximoLocal;
+        if (maximoLocal > maximoTotal)
+            maximoTotal = maximoLocal;
 
     }
 
-    return maximoGeral;
+    printf("%d\n", maximoTotal);
 
 } 
 
@@ -38,11 +38,11 @@ int main() {
     printf("Digite o tamanho do array: ");
     scanf("%d", &size);
 
-    int *array = malloc(size * sizeof(int));
+    int array[size];
 
-    for(int i = 0; i<size; i++) scanf(&array[i]);
+    for(int i = 0; i<size; i++) scanf("%d",&array[i]);
 
-    printf("%d", subsequenciaSomaMaxima(array, size));
+    subsequenciaSomaMaxima(array, size);
 
     return 0;
     
